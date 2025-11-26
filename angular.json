@@ -49,7 +49,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "https://coffeecode-frank-vera.github.io/cc-utils-ui/"
+              "baseHref": "/"
             },
             "development": {
               "optimization": false,
