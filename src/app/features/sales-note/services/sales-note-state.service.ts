@@ -33,6 +33,10 @@ export class SalesNoteStateService {
     this._products().reduce((sum, p) => sum + p.total, 0)
   );
 
+  public readonly isCustomerValid = computed(
+    () => this._customer().name.trim() !== ''
+  );
+
   public readonly isValid = computed(
     () => this._customer().name.trim() !== '' && this._products().length > 0
   );

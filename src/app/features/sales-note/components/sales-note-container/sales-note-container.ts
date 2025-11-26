@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { MatStepperModule } from '@angular/material/stepper';
+import { Component, signal, ViewChild } from '@angular/core';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
@@ -10,6 +10,7 @@ import { StepDates } from '../step-dates/step-dates';
 import { StepCustomer } from '../step-customer/step-customer';
 import { StepProducts } from '../step-products/step-products';
 import { StepPreview } from '../step-preview/step-preview';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-sales-note-container',
@@ -30,6 +31,7 @@ import { StepPreview } from '../step-preview/step-preview';
   styleUrl: './sales-note-container.scss'
 })
 export class SalesNoteContainer {
+  @ViewChild(MatStepper) stepper!: MatStepper;
   protected readonly isLangVisible = signal(false);
   protected readonly isLinear = signal(true);
   protected readonly currentLang = signal('es');
@@ -48,5 +50,25 @@ export class SalesNoteContainer {
   protected changeLanguage(langCode: string): void {
     this.translate.use(langCode);
     this.currentLang.set(langCode);
+  }
+
+  onStepChange(event: StepperSelectionEvent) {
+    const from = event.previouslySelectedIndex;
+    const to = event.selectedIndex;
+    
+    if (to <= from) return;
+
+    if (!this.isValid(to)) {
+      Promise.resolve().then(() => {
+        this.stepper.selectedIndex = from;
+      });
+    }
+  }
+
+  isValid(index: number) {
+    if (index === 2) return this.stateService.isCustomerValid();
+    if (index === 3) return this.stateService.isValid();
+
+    return true;
   }
 }

@@ -42,7 +42,7 @@ export class StepProducts {
   protected readonly newProductForm = this.fb.group({
     name: ['', Validators.required],
     quantity: [1, [Validators.required, Validators.min(1)]],
-    unitPrice: [0, [Validators.required, Validators.min(0)]]
+    unitPrice: [0, [Validators.required, Validators.min(1)]]
   });
 
   protected readonly editProductForm = this.fb.group({

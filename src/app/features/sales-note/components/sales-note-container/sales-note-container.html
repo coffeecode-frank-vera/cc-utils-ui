@@ -13,7 +13,7 @@
     }
   </header>
 
-  <mat-stepper orientation="vertical" [linear]="isLinear()" #stepper>
+  <mat-stepper orientation="vertical" [linear]="isLinear()" #stepper (selectionChange)="onStepChange($event)">
     <mat-step label="{{ 'sales_notes.steps.dates' | translate }}">
       <app-step-dates />
       <div class="stepper-actions">
@@ -29,25 +29,25 @@
         <button mat-button matStepperPrevious>
           {{ 'sales_notes.buttons.back' | translate }}
         </button>
-        <button mat-raised-button color="primary" matStepperNext>
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!stateService.isCustomerValid()">
           {{ 'sales_notes.buttons.next' | translate }}
         </button>
       </div>
     </mat-step>
 
-    <mat-step label="{{ 'sales_notes.steps.products' | translate }}">
+    <mat-step label="{{ 'sales_notes.steps.products' | translate }}" [completed]="stateService.isCustomerValid()">
       <app-step-products />
       <div class="stepper-actions">
         <button mat-button matStepperPrevious>
           {{ 'sales_notes.buttons.back' | translate }}
         </button>
-        <button mat-raised-button color="primary" matStepperNext>
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!stateService.isValid()">
           {{ 'sales_notes.buttons.next' | translate }}
         </button>
       </div>
     </mat-step>
 
-    <mat-step label="{{ 'sales_notes.steps.preview' | translate }}">
+    <mat-step label="{{ 'sales_notes.steps.preview' | translate }}" [completed]="stateService.isValid()">
       <app-step-preview />
       <div class="stepper-actions">
         <button mat-button matStepperPrevious>
