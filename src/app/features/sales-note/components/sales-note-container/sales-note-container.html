@@ -1,0 +1,62 @@
+<div class="sales-note-container">
+  <header class="header">
+    <h1>{{ 'sales_notes.title' | translate }}</h1>
+    @if (isLangVisible()) {
+    <mat-form-field appearance="outline" class="language-selector">
+      <mat-label>{{ 'sales_notes.language' | translate }}</mat-label>
+      <mat-select [value]="currentLang()" (selectionChange)="changeLanguage($event.value)">
+        @for (lang of availableLanguages; track lang.code) {
+          <mat-option [value]="lang.code">{{ lang.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    }
+  </header>
+
+  <mat-stepper orientation="vertical" [linear]="isLinear()" #stepper>
+    <mat-step label="{{ 'sales_notes.steps.dates' | translate }}">
+      <app-step-dates />
+      <div class="stepper-actions">
+        <button mat-raised-button color="primary" matStepperNext>
+          {{ 'sales_notes.buttons.next' | translate }}
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step label="{{ 'sales_notes.steps.customer' | translate }}">
+      <app-step-customer />
+      <div class="stepper-actions">
+        <button mat-button matStepperPrevious>
+          {{ 'sales_notes.buttons.back' | translate }}
+        </button>
+        <button mat-raised-button color="primary" matStepperNext>
+          {{ 'sales_notes.buttons.next' | translate }}
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step label="{{ 'sales_notes.steps.products' | translate }}">
+      <app-step-products />
+      <div class="stepper-actions">
+        <button mat-button matStepperPrevious>
+          {{ 'sales_notes.buttons.back' | translate }}
+        </button>
+        <button mat-raised-button color="primary" matStepperNext>
+          {{ 'sales_notes.buttons.next' | translate }}
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step label="{{ 'sales_notes.steps.preview' | translate }}">
+      <app-step-preview />
+      <div class="stepper-actions">
+        <button mat-button matStepperPrevious>
+          {{ 'sales_notes.buttons.back' | translate }}
+        </button>
+        <button mat-button (click)="stateService.reset(); stepper.reset()">
+          {{ 'sales_notes.new_note' | translate }}
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

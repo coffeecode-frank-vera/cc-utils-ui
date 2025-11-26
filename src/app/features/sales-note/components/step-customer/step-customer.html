@@ -1,0 +1,42 @@
+<form [formGroup]="form" class="step-form">
+  <h2>{{ 'sales_notes.steps.customer' | translate }}</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'sales_notes.fields.customer_name' | translate }}</mat-label>
+    <input
+      matInput
+      formControlName="name"
+      [placeholder]="'sales_notes.placeholders.customer_name' | translate"
+      required
+    />
+    @if (form.get('name')?.hasError('required')) {
+      <mat-error>{{ 'sales_notes.validations.required' | translate }}</mat-error>
+    }
+    @if (form.get('name')?.hasError('minlength')) {
+      <mat-error>{{ 'sales_notes.validations.min_length' | translate: {length: 2} }}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'sales_notes.fields.phone' | translate }}</mat-label>
+    <input
+      matInput
+      type="tel"
+      formControlName="phone"
+      [placeholder]="'sales_notes.placeholders.phone' | translate"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'sales_notes.fields.email' | translate }}</mat-label>
+    <input
+      matInput
+      type="email"
+      formControlName="email"
+      [placeholder]="'sales_notes.placeholders.email' | translate"
+    />
+    @if (form.get('email')?.hasError('email')) {
+      <mat-error>{{ 'sales_notes.validations.invalid_email' | translate }}</mat-error>
+    }
+  </mat-form-field>
+</form>

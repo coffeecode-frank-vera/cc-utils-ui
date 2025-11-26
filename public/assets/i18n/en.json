@@ -1,0 +1,65 @@
+{
+  "sales_notes": {
+    "title": "Sales Notes",
+    "language": "Language",
+    "new_note": "New Note",
+    "steps": {
+      "dates": "Dates",
+      "customer": "Customer Data",
+      "products": "Products",
+      "preview": "Preview & Download"
+    },
+    "fields": {
+      "creation_date": "Sale Date",
+      "delivery_date": "Delivery Date",
+      "customer_name": "Customer Name",
+      "phone": "Phone",
+      "email": "Email",
+      "product_name": "Product",
+      "quantity": "Quantity",
+      "unit_price": "Unit Price",
+      "total": "Total",
+      "currency": "Currency"
+    },
+    "buttons": {
+      "next": "Next",
+      "back": "Back",
+      "add_product": "Add Product",
+      "download_pdf": "Download PDF",
+      "edit": "Edit",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "placeholders": {
+      "customer_name": "Enter customer name",
+      "phone": "Enter phone number",
+      "email": "Enter email address",
+      "product_name": "Enter product name"
+    },
+    "validations": {
+      "required": "This field is required",
+      "min_length": "Minimum {{length}} characters",
+      "invalid_email": "Invalid email address",
+      "min_value": "Minimum value is {{value}}",
+      "min_products": "Add at least one product"
+    },
+    "messages": {
+      "no_products": "No products added. Add at least one to continue.",
+      "success_pdf": "PDF generated successfully"
+    },
+    "pdf": {
+      "title": "SALES NOTE",
+      "business_info": "Business Information",
+      "customer_info": "Customer Information",
+      "products": "Products",
+      "subtotal": "Subtotal",
+      "total": "TOTAL",
+      "generated_on": "Generated on"
+    },
+    "currency_options": {
+      "MXN": "Mexican Peso (MXN)",
+      "USD": "US Dollar (USD)"
+    }
+  }
+}

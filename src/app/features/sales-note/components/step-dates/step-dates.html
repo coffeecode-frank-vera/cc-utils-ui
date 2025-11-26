@@ -1,0 +1,23 @@
+<form [formGroup]="form" class="step-form">
+  <h2>{{ 'sales_notes.steps.dates' | translate }}</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'sales_notes.fields.creation_date' | translate }}</mat-label>
+    <input matInput [matDatepicker]="creationPicker" formControlName="creationDate" required />
+    <mat-datepicker-toggle matIconSuffix [for]="creationPicker" />
+    <mat-datepicker #creationPicker />
+    @if (form.get('creationDate')?.hasError('required')) {
+      <mat-error>{{ 'sales_notes.validations.required' | translate }}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{ 'sales_notes.fields.delivery_date' | translate }}</mat-label>
+    <input matInput [matDatepicker]="deliveryPicker" formControlName="deliveryDate" required />
+    <mat-datepicker-toggle matIconSuffix [for]="deliveryPicker" />
+    <mat-datepicker #deliveryPicker />
+    @if (form.get('deliveryDate')?.hasError('required')) {
+      <mat-error>{{ 'sales_notes.validations.required' | translate }}</mat-error>
+    }
+  </mat-form-field>
+</form>

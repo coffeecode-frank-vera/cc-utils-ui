@@ -1,0 +1,65 @@
+{
+  "sales_notes": {
+    "title": "Notas de Venta",
+    "language": "Idioma",
+    "new_note": "Nueva Nota",
+    "steps": {
+      "dates": "Fechas",
+      "customer": "Datos del Cliente",
+      "products": "Productos",
+      "preview": "Vista Previa y Descarga"
+    },
+    "fields": {
+      "creation_date": "Fecha de Venta",
+      "delivery_date": "Fecha de Entrega",
+      "customer_name": "Nombre del Cliente",
+      "phone": "Teléfono",
+      "email": "Correo Electrónico",
+      "product_name": "Producto",
+      "quantity": "Cantidad",
+      "unit_price": "Precio Unitario",
+      "total": "Total",
+      "currency": "Moneda"
+    },
+    "buttons": {
+      "next": "Siguiente",
+      "back": "Atrás",
+      "add_product": "Agregar Producto",
+      "download_pdf": "Descargar PDF",
+      "edit": "Editar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar"
+    },
+    "placeholders": {
+      "customer_name": "Ingrese el nombre del cliente",
+      "phone": "Ingrese el número de teléfono",
+      "email": "Ingrese el correo electrónico",
+      "product_name": "Ingrese el nombre del producto"
+    },
+    "validations": {
+      "required": "Este campo es obligatorio",
+      "min_length": "Mínimo {{length}} caracteres",
+      "invalid_email": "Correo electrónico inválido",
+      "min_value": "El valor mínimo es {{value}}",
+      "min_products": "Agregue al menos un producto"
+    },
+    "messages": {
+      "no_products": "No hay productos agregados. Agregue al menos uno para continuar.",
+      "success_pdf": "PDF generado exitosamente"
+    },
+    "pdf": {
+      "title": "NOTA DE VENTA",
+      "business_info": "Información del Negocio",
+      "customer_info": "Información del Cliente",
+      "products": "Productos",
+      "subtotal": "Subtotal",
+      "total": "TOTAL",
+      "generated_on": "Generado el"
+    },
+    "currency_options": {
+      "MXN": "Peso Mexicano (MXN)",
+      "USD": "Dólar Estadounidense (USD)"
+    }
+  }
+}

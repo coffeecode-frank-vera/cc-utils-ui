@@ -1,0 +1,86 @@
+<div class="step-preview">
+  <h2>{{ 'sales_notes.steps.preview' | translate }}</h2>
+
+  <!-- Summary Preview -->
+  <div class="preview-summary">
+    <mat-card class="summary-card">
+      <mat-card-header>
+        <mat-card-title>{{ 'sales_notes.pdf.title' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- Dates Section -->
+        <div class="summary-section">
+          <h3>{{ 'sales_notes.fields.creation_date' | translate }}</h3>
+          <p>{{ dates().creationDate | date: 'dd/MM/yyyy' }}</p>
+        </div>
+
+        <div class="summary-section">
+          <h3>{{ 'sales_notes.fields.delivery_date' | translate }}</h3>
+          <p>{{ dates().deliveryDate | date: 'dd/MM/yyyy' }}</p>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- Customer Section -->
+        <div class="summary-section">
+          <h3>{{ 'sales_notes.pdf.customer_info' | translate }}</h3>
+          <p><strong>{{ 'sales_notes.fields.customer_name' | translate }}:</strong> {{ customer().name }}</p>
+          @if (customer().phone) {
+            <p><strong>{{ 'sales_notes.fields.phone' | translate }}:</strong> {{ customer().phone }}</p>
+          }
+          @if (customer().email) {
+            <p><strong>{{ 'sales_notes.fields.email' | translate }}:</strong> {{ customer().email }}</p>
+          }
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- Products Section -->
+        <div class="summary-section">
+          <h3>{{ 'sales_notes.pdf.products' | translate }}</h3>
+          @for (product of products(); track product.id) {
+            <div class="product-item">
+              <p class="product-name">{{ product.name }}</p>
+              <p class="product-details">
+                {{ 'sales_notes.fields.quantity' | translate }}: {{ product.quantity }} ×
+                {{ product.unitPrice | currency: currency() }} =
+                <strong>{{ product.total | currency: currency() }}</strong>
+              </p>
+            </div>
+          }
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- Total Section -->
+        <div class="summary-section total-section">
+          <h3>{{ 'sales_notes.pdf.total' | translate }}</h3>
+          <p class="total-amount">{{ total() | currency: currency() }}</p>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="preview-actions">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="downloadPDF()"
+            [disabled]="isGenerating()"
+          >
+            @if (isGenerating()) {
+              <mat-spinner diameter="20"></mat-spinner>
+            } @else {
+              <mat-icon>download</mat-icon>
+            }
+            {{ 'sales_notes.buttons.download_pdf' | translate }}
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Hidden PDF Template for generation only -->
+  <div class="pdf-hidden" #pdfTemplate>
+    <app-pdf-template />
+  </div>
+</div>

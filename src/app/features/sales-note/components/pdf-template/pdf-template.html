@@ -1,0 +1,77 @@
+<div class="pdf-document">
+  <h2>{{ 'sales_notes.pdf.title' | translate }}</h2>
+
+  <table class="pdf-header">
+    <tr>
+      <td class="business-info">
+        <h1>{{ businessInfo.name }}</h1>
+        <p><strong>Dirección:</strong> {{ businessInfo.address }}</p>
+        <p><strong>Correo Electrónico:</strong> {{ businessInfo.email }}</p>
+        <p><strong>WhatsApp:</strong> {{ businessInfo.whatsapp }}</p>
+        <p><strong>Facebook:</strong> {{ businessInfo.facebook }}</p>
+      </td>
+      <td class="document-title">
+        <img src="/assets/images/logo-leds.png">
+      </td>
+    </tr>
+  </table>
+
+  <table class="pdf-dates">
+    <tr>
+      <td class="date-item">
+        <strong>{{ 'sales_notes.fields.creation_date' | translate }}:</strong>
+        <span>{{ dates().creationDate | date: 'dd/MM/yyyy' }}</span>
+      </td>
+      <td class="date-item">
+        <strong>{{ 'sales_notes.fields.delivery_date' | translate }}:</strong>
+        <span>{{ dates().deliveryDate | date: 'dd/MM/yyyy' }}</span>
+      </td>
+    </tr>
+  </table>
+
+  <section class="pdf-customer">
+    <h3>{{ 'sales_notes.pdf.customer_info' | translate }}</h3>
+    <p><strong>{{ 'sales_notes.fields.customer_name' | translate }}:</strong> {{ customer().name }}</p>
+    @if (customer().phone) {
+      <p><strong>{{ 'sales_notes.fields.phone' | translate }}:</strong> {{ customer().phone }}</p>
+    }
+    @if (customer().email) {
+      <p><strong>{{ 'sales_notes.fields.email' | translate }}:</strong> {{ customer().email }}</p>
+    }
+  </section>
+
+  <section class="pdf-products">
+    <h3>{{ 'sales_notes.pdf.products' | translate }}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>{{ 'sales_notes.fields.product_name' | translate }}</th>
+          <th>{{ 'sales_notes.fields.quantity' | translate }}</th>
+          <th>{{ 'sales_notes.fields.unit_price' | translate }}</th>
+          <th>{{ 'sales_notes.fields.total' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products(); track product.id) {
+          <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.unitPrice | currency: currency() }}</td>
+            <td>{{ product.total | currency: currency() }}</td>
+          </tr>
+        }
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>{{ 'sales_notes.pdf.total' | translate }}</strong></td>
+          <td><strong>{{ total() | currency: currency() }}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+
+  <footer class="pdf-footer">
+    <p><strong>Política de Garantía:</strong> 2 meses de garantía por defectos de fábrica.</p>
+    <p>{{ 'sales_notes.pdf.generated_on' | translate }} {{ today | date: 'dd/MM/yyyy HH:mm' }}</p>
+  </footer>
+</div>
